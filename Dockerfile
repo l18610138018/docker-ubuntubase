@@ -10,7 +10,7 @@ RUN rm -f /etc/motd && \
 
 RUN  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
-	    locales wget nano cron
+	    locales wget nano cron openssh-server
 
 RUN dpkg-reconfigure locales && \
     locale-gen en_US.UTF-8 && \
@@ -30,3 +30,6 @@ ENV TZ Asia/Ho_Chi_Minh
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
