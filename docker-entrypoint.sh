@@ -1,4 +1,4 @@
 #!/bin/bash
-service cron restart
+service cron start
 bash
 exec "$@"
