@@ -31,5 +31,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
+ADD runssh.sh /runssh.sh
+RUN chmod +x /runssh.sh
+
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
