@@ -1,20 +1,15 @@
-FROM ubuntu:xenial
+FROM ubuntu:18.04
 # Maintainer
 # ----------
-MAINTAINER babim <babim@matmagoc.com>
+MAINTAINER Chance support@mindme.cn
 
-RUN rm -f /etc/motd && \
-    echo "---" > /etc/motd && \
-    echo "Support by Duc Anh Babim. Contact: babim@matmagoc.com" >> /etc/motd && \
-    echo "---" >> /etc/motd && \
-    touch "/(C) Babim"
 
 RUN  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
 	    locales wget nano
 
 RUN dpkg-reconfigure locales && \
-    locale-gen en_US.UTF-8 && \
+    locale-gen en_US.UTF-8 zh_CN.UTF-8 && \
     update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 RUN apt-get clean && \
@@ -26,4 +21,4 @@ RUN apt-get clean && \
     rm -f /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
 ENV LC_ALL en_US.UTF-8
-ENV TZ Asia/Ho_Chi_Minh
+ENV TZ Asia/Shanghai
